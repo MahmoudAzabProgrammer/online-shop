@@ -1,0 +1,29 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+
+<div class="container">
+    <% if(orders.length === 0) { %>
+        <p class="alert alert-danger">
+            There is no Orders 
+        </p>
+    <%} else { %>
+        <table class="table">
+            <thead>
+                <td>Number</td>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Amount</td>
+                <td>Total</td>
+                <td>Address</td>
+                <td>Status</td>
+                <td>Date and Time</td>
+                <td>Action</td>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    <% } %>
+</div>
+    
+<%- include('parts/footer') %>

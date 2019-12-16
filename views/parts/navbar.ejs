@@ -1,0 +1,50 @@
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+      <a class="navbar-brand" routerLink="/">Online Shop </a>
+      <button (click)="toggleNavbar()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" [class.show]="isOpen" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item <%= pageTitle ==='Home' ? 'active': '' %>">
+            <a class="nav-link" href="/" routerLinkActive="active" routerLinkActiveOptions="{exact: true}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <% if(isUser) {%>
+            <li class="nav-item <%= pageTitle ==='Cart' ? 'active': '' %>">
+                <a class="nav-link" href="/cart" routerLinkActive="active">Cart</a>
+              </li>
+              <li class="nav-item<%= pageTitle ==='Home' ? 'active': '' %>" >
+                <a class="nav-link" href="/order" routerLinkActive="active">Orders</a>
+              </li>
+              <li class="nav-item<%= pageTitle ==='Home' ? 'active': '' %>">
+                <a class="nav-link" href="/vorder" routerLinkActive="active">Virfy Order</a>
+              </li>
+          <%} else {%>
+            <li class="nav-item<%= pageTitle ==='Home' ? 'active': '' %>">
+                <a class="nav-link" href="/login" routerLinkActive="active">Login</a>
+            </li>
+            <li class="nav-item<%= pageTitle ==='Home' ? 'active': '' %>">
+                <a class="nav-link" href="/signup" routerLinkActive="active">SignUp</a>
+            </li>
+          <%}%>
+          <% if(isAdmin) {%>
+            <li class="nav-item<%= pageTitle ==='Home' ? 'active': '' %>">
+            <a class="nav-link" href="/admin/add" routerLinkActive="active">Add Product</a>
+            </li>
+            <li class="nav-item<%= pageTitle ==='Home' ? 'active': '' %>">
+            <a class="nav-link" href="/admin/order" routerLinkActive="active">Manage Orders</a>
+            </li>
+          <%} %> 
+
+        </ul>
+
+        <% if(isUser) {%>
+        <form action="/logout" method="POST">
+          <input type="submit" value="Logout" class="btn btn-danger">
+        </form>
+        <%}%>
+      </div>
+  </div>
+  </nav>

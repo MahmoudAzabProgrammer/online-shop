@@ -1,0 +1,48 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+
+<div class="container">
+    <% if(items.length === 0) { %>
+        <p class="alert alert-danger">
+            There is no items 
+        </p>
+    <%} else { %>
+        <table class="table">
+            <thead>
+                <td>Number</td>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Amount</td>
+                <td>Total</td>
+                <td>Date and Time</td>
+                <td>Action</td>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<items.length; i++) {%>
+                <tr>
+                    <td><%= i + 1 %></td>
+                    <td><%= items[i].name %></td>
+                    <td><%= items[i].price%> $ </td>
+                    <form method="POST">
+                        <td> <input type="text" name="amount" class="form-control" value="<%= items[i].amount %>"></td>
+                        <td> <%= items[i].price * items[i].amount %> $ </td>
+                        <td> <%= items[i].timeStamp %> </td>
+                        <td>
+                        <input type="hidden" name="cartId"  value="<%= items[i]._id %>">
+                        <input type="submit" value="Save" class="btn btn-success" formaction="/cart/save">
+                        <input type="submit" value="Order" class="btn btn-success" formaction="/cart/order">
+                        <input type="submit" value="Delete" class="btn btn-danger" formaction="/cart/delete">
+                        </td>
+                    
+                </tr>
+                <%}%>
+            </tbody>
+        </table>
+            <input type="submit" value="OrderAll" class="btn btn-success" formaction="/cart/orderAll">
+            <input type="submit" value="DeleteAll" class="btn btn-danger" formaction="/cart/deleteAll">
+        </form>
+    <% } %>
+</div>
+
+<%- include('parts/footer') %>
+
